@@ -1,0 +1,27 @@
+{
+  "name": "team_profile_generator_06_02_22",
+  "version": "1.0.0",
+  "description": "Generates HTML web page displaying teams info including name, email, and github",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PeterBookmyer/Team_Profile_Generator_06_02_22.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PeterBookmyer/Team_Profile_Generator_06_02_22/issues"
+  },
+  "homepage": "https://github.com/PeterBookmyer/Team_Profile_Generator_06_02_22#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4",
+    "jest": "^28.1.0"
+  }
+}
