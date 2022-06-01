@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/PeterBookmyer/Team_Profile_Generator_06_02_22#readme",
   "dependencies": {
+    "bootstrap-icons": "^1.8.3",
     "inquirer": "^8.2.4",
     "jest": "^28.1.0"
   }
