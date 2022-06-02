@@ -1,36 +1,109 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+function questionsBlock1(callBack) {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "Who is the Manager of the Team?",
+        name: "name",
+      },
+      {
+        type: "input",
+        message: "What is their Employee ID?",
+        name: "ID",
+      },
+      {
+        type: "input",
+        message: "What is their Email Address?",
+        name: "email",
+      },
+      {
+        type: "input",
+        message: "What is their office number?",
+        name: "officeNumber",
+      },
+    ])
+    .then((block1Answers) => {
+      return callBack(block1Answers);
+    });
+}
 
-inquirer
-  .prompt([
-    {
-      type: "input",
-      message: "Who is the Manager of the Team?",
-      name: "name",
-    },
-    {
-      type: "input",
-      message: "What is their Employee ID?",
-      name: "ID",
-    },
-    {
-      type: "input",
-      message: "What is their Email Address?",
-      name: "email",
-    },
-    {
-      type: "input",
-      message: "What is their office number?",
-      name: "officeNumber",
-    },
-    {
-      type: "list",
-      message: "Please pick a Team Member to add or finish to end",
-      name: "team",
-      choices: ["Engineer", "Intern", "Finish Building Team"],
-    },
-  ])
+function addTeamMember(block1Answers) {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        message: "Please add another Team Member or Finish Building Team",
+        choices: ["Intern", "Engineer", "Finish Team"],
+        name: "newTeamMember",
+      },
+    ])
+    .then((newTeamMember) => {
+      console.log(newTeamMember);
+      if (newTeamMember == "Intern") {
+        inquirer.prompt([
+          {
+            type: "input",
+            message: "What is Intern's Name?",
+            name: "InternName",
+          },
+          {
+            type: "input",
+            message: "What is Interns ID?",
+            name: "InternId",
+          },
+          {
+            type: "input",
+            message: "What is Interns email?",
+            name: "InternEmail",
+          },
+          {
+            type: "input",
+            message: "Where does the Intern go to school?",
+            name: "InternSchool",
+          },
+        ]);
+      }
+      if (newTeamMember == "Engineer") {
+        inquirer.prompt([
+          {
+            type: "input",
+            message: "What is Engineers Name?",
+            name: "EngName",
+          },
+          {
+            type: "input",
+            message: "What is Engineers ID?",
+            name: "EngId",
+          },
+          {
+            type: "input",
+            message: "What is Engineers email?",
+            name: "EngEmail",
+          },
+          {
+            type: "input",
+            message: "What is Engineers GitHub Username?",
+            name: "EngGit",
+          },
+        ]);
+      } else console.log("You have Finished Building Team!");
+    });
+}
+
+questionsBlock1(addTeamMember);
+
+// }
+
+//     {
+//       type: "list",
+//       message: "Please pick a Team Member to add or finish to end",
+//       name: "team",
+//       choices: ["Engineer", "Intern", "Finish Building Team"],
+//     },
+//   ])
 //   .then((response) => {
 //     fs.writeFile(
 //       "index.html",
