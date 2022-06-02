@@ -1,7 +1,15 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
+const Employee = require("./lib/Employee");
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
 
-function questionsBlock1(callBack) {
+const teamArray = [];
+
+//manager questions
+
+function managerQuestions() {
   inquirer
     .prompt([
       {
@@ -25,12 +33,20 @@ function questionsBlock1(callBack) {
         name: "officeNumber",
       },
     ])
-    .then((block1Answers) => {
-      return callBack(block1Answers);
+    .then((managerAnswers) => {
+      const { name, ID, email, officeNumber } = managerAnswers;
+      const manager = new Manager(name, ID, email, officeNumber);
+
+      teamArray.push(manager);
+      // console.log(manager);
+      // console.log(teamArray);
+      addTeamMember();
     });
 }
 
-function addTeamMember(block1Answers) {
+//adding a Team Member
+
+function addTeamMember() {
   inquirer
     .prompt([
       {
@@ -40,69 +56,90 @@ function addTeamMember(block1Answers) {
         name: "newTeamMember",
       },
     ])
-    .then((newTeamMember) => {
-      console.log(newTeamMember);
-      if (newTeamMember == "Intern") {
-        inquirer.prompt([
-          {
-            type: "input",
-            message: "What is Intern's Name?",
-            name: "InternName",
-          },
-          {
-            type: "input",
-            message: "What is Interns ID?",
-            name: "InternId",
-          },
-          {
-            type: "input",
-            message: "What is Interns email?",
-            name: "InternEmail",
-          },
-          {
-            type: "input",
-            message: "Where does the Intern go to school?",
-            name: "InternSchool",
-          },
-        ]);
+    .then(({ newTeamMember }) => {
+      // console.log(newTeamMember);
+      if (newTeamMember === "Intern") {
+        inquirer
+          .prompt([
+            {
+              type: "input",
+              message: "What is Intern's Name?",
+              name: "internName",
+            },
+            {
+              type: "input",
+              message: "What is Interns ID?",
+              name: "internId",
+            },
+            {
+              type: "input",
+              message: "What is Interns email?",
+              name: "internEmail",
+            },
+            {
+              type: "input",
+              message: "Where does the Intern go to school?",
+              name: "internSchool",
+            },
+          ])
+          .then((internAnswers) => {
+            const { internName, internId, internEmail, internSchool } =
+              internAnswers;
+            const intern = new Intern(
+              internName,
+              internId,
+              internEmail,
+              internSchool
+            );
+
+            teamArray.push(intern);
+            // console.log(intern);
+            // console.log(teamArray);
+            addTeamMember();
+          });
+      } else if (newTeamMember == "Engineer") {
+        inquirer
+          .prompt([
+            {
+              type: "input",
+              message: "What is Engineers Name?",
+              name: "engName",
+            },
+            {
+              type: "input",
+              message: "What is Engineers ID?",
+              name: "engId",
+            },
+            {
+              type: "input",
+              message: "What is Engineers email?",
+              name: "engEmail",
+            },
+            {
+              type: "input",
+              message: "What is Engineers GitHub Username?",
+              name: "engGit",
+            },
+          ])
+          .then((engAnswers) => {
+            const { engName, engId, engEmail, engGit } = engAnswers;
+            const engineer = new Engineer(engName, engId, engEmail, engGit);
+
+            teamArray.push(engineer);
+            // console.log(engineer);
+            // console.log(teamArray);
+            addTeamMember();
+          });
+      } else {
+        console.log("You have Finished Building Team!");
+        console.log(teamArray);
       }
-      if (newTeamMember == "Engineer") {
-        inquirer.prompt([
-          {
-            type: "input",
-            message: "What is Engineers Name?",
-            name: "EngName",
-          },
-          {
-            type: "input",
-            message: "What is Engineers ID?",
-            name: "EngId",
-          },
-          {
-            type: "input",
-            message: "What is Engineers email?",
-            name: "EngEmail",
-          },
-          {
-            type: "input",
-            message: "What is Engineers GitHub Username?",
-            name: "EngGit",
-          },
-        ]);
-      } else console.log("You have Finished Building Team!");
     });
 }
 
-questionsBlock1(addTeamMember);
+managerQuestions(addTeamMember);
 
-// }
-
-//     {
-//       type: "list",
-//       message: "Please pick a Team Member to add or finish to end",
-//       name: "team",
-//       choices: ["Engineer", "Intern", "Finish Building Team"],
-//     },
+//
 //   ])
 //   .then((response) => {
 //     fs.writeFile(
