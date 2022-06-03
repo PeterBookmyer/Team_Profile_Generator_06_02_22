@@ -1,3 +1,5 @@
+//main html
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,43 +22,47 @@
     <header class="jumbotron bg-danger">
       <h1 class="text-center">Team Profile</h1>
     </header>
-    <!-- example card -->
     <div class="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-around">
+      <!-- manager card -->
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <h3 class="card-title bg-info">Peter</h3>
+            <h3 class="card-title bg-info">${manager.name}</h3>
             <h5 class="card-title bg-info bi bi-people">Manager</h5>
             <ul class="card-text">
-              <li>Name</li>
-              <li>ID</li>
-              <li>Email</li>
+              <li>${manager.id}</li>
+              <li>${manager.email}</li>
+              <li>${manager.officeNumber}</li>
             </ul>
           </div>
         </div>
       </div>
+
+      <!-- engineer card -->
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <h3 class="card-title bg-info">Peter</h3>
+            <h3 class="card-title bg-info">${engineer.name}</h3>
             <h5 class="card-title bg-info bi bi-people">Engineer</h5>
             <ul class="card-text">
-              <li>Name</li>
-              <li>ID</li>
-              <li>Email</li>
+              <li>${engineer.id}</li>
+              <li>${engineer.email}</li>
+              <li>${engineer.gitHub}</li>
             </ul>
           </div>
         </div>
       </div>
+
+      <!-- intern card -->
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <h3 class="card-title bg-info">Peter</h3>
+            <h3 class="card-title bg-info">${intern.name}</h3>
             <h5 class="card-title bg-info bi bi-people">Intern</h5>
             <ul class="card-text">
-              <li>Name</li>
-              <li>ID</li>
-              <li>Email</li>
+              <li>${intern.id}</li>
+              <li>${intern.email}</li>
+              <li>${intern.school}</li>
             </ul>
           </div>
         </div>

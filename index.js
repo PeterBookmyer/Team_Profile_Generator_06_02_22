@@ -1,3 +1,4 @@
+//required modules
 const inquirer = require("inquirer");
 const fs = require("fs");
 const Employee = require("./lib/Employee");
@@ -8,7 +9,6 @@ const Intern = require("./lib/Intern");
 const teamArray = [];
 
 //manager questions
-
 function managerQuestions() {
   inquirer
     .prompt([
@@ -41,11 +41,11 @@ function managerQuestions() {
       // console.log(manager);
       // console.log(teamArray);
       addTeamMember();
+      managerCard();
     });
 }
 
 //adding a Team Member
-
 function addTeamMember() {
   inquirer
     .prompt([
@@ -96,6 +96,7 @@ function addTeamMember() {
             // console.log(intern);
             // console.log(teamArray);
             addTeamMember();
+            internCard();
           });
       } else if (newTeamMember == "Engineer") {
         inquirer
@@ -129,6 +130,7 @@ function addTeamMember() {
             // console.log(engineer);
             // console.log(teamArray);
             addTeamMember();
+            engineerCard();
           });
       } else {
         console.log("You have Finished Building Team!");
@@ -137,43 +139,91 @@ function addTeamMember() {
     });
 }
 
+//calls functions
 managerQuestions(addTeamMember);
 
-//
-//   ])
-//   .then((response) => {
-//     fs.writeFile(
-//       "index.html",
-//       //       `<!DOCTYPE html>
-//       // <html lang="en">
-//       //   <head>
-//       //     <meta charset="UTF-8" />
-//       //     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-//       //     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-//       //     <title>Portfolio Gen</title>
-//       //     <link
-//       //       rel="stylesheet"
-//       //       href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-//       //       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-//       //       crossorigin="anonymous"
-//       //     />
-//       //   </head>
-//       //   <body>
-//       //     <header class="jumbotron d-flex align-items-center flex-column">
-//       //       <div class="display-4"></div>
-//       //       <h1>${response.name}</h1>
-//       //       <h2>${response.location}</h2>
-//       //       <p>${response.hobby}</p>
-//       //     </header>
-//       //     <main class="d-flex align-items-center flex-column">
-//       //       <div>${response.github}</div>
-//       //       <div>${response.linkedin}</div>
-//       //     </main>
-//       //     <script src="/01-Activities/28-Stu_Mini-project/index.js"></script>
-//       //   </body>
-//       // </html>`,
-//       (err) => {
-//         err ? console.log(err) : console.log("success!");
-//       }
-//     );
-//   });
+//function to create manager card and main elements
+function managerCard() {
+  fs.writeFileSync(
+    "index.html",
+    `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css"
+    />
+    <title>Team Profile Generator</title>
+  </head>
+  <body>
+    <header class="jumbotron bg-danger">
+      <h1 class="text-center">Team Profile</h1>
+    </header>
+    <div id="cardEl" class="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-around">
+    <!-- manager card -->
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title bg-info">Name</h3>
+            <h5 class="card-title bg-info bi bi-people">Manager</h5>
+            <ul class="card-text">
+              <li>Id</li>
+              <li>email</li>
+              <li>officeNumber</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./index.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+</html>`
+  );
+}
+
+//function to create intern card
+function internCard() {
+  const internCard = `<div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title bg-info">Name</h3>
+            <h5 class="card-title bg-info bi bi-people">Intern</h5>
+            <ul class="card-text">
+              <li>Id</li>
+              <li>Email</li>
+              <li>School</li>
+            </ul>
+          </div>
+        </div>
+      </div>`;
+  document.getElementById("cardEl").innerHTML = internCard;
+}
+
+//function to create engineer card
+function engineerCard() {
+  const engineerCard = `<div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title bg-info">Name</h3>
+            <h5 class="card-title bg-info bi bi-people">Engineer</h5>
+            <ul class="card-text">
+              <li>Id</li>
+              <li>Email</li>
+              <li>GitHub</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+`;
+  document.getElementById("cardEl").innerHTML = internCard;
+}
