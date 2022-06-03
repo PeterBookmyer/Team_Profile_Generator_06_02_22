@@ -1,7 +1,11 @@
-const Manager = require('../lib/manager')
+const Manager = require("../lib/manager");
 
-describe('Manager class', () => {
-    it('creates an object with name, id, email properties', () => {
-        
-    })
-}
+describe("Manager class", () => {
+  //test for getRole function
+  it("should get by role", () => {
+    const manager = new Manager();
+    const { role } = manager;
+
+    expect(manager.getRole()).toBe("Manager");
+  });
+});
