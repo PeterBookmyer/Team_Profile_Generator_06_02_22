@@ -36,3 +36,5 @@ Questions?
 github username - PeterBookmyer
 
 link to screencastify - https://drive.google.com/file/d/1He6bMilfrKqnPKKro6GcIwIlJu5lz2XU/view
+
+repo link - https://github.com/PeterBookmyer/Team_Profile_Generator_06_02_22
